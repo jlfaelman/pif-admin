@@ -1,0 +1,58 @@
+<section class="py-5">
+    <div class="container-sm ">
+        <div class="fs-4 pb-2 mb-5 border-bottom">
+            <form action="" onsubmit="search(); return false;">
+                <div class="row">
+                    <div class="col">Fundraiser</div>
+                    <div class="col-2">
+                        <select class="form-select form-select-sm" aria-label="Default select example" id="search-select">
+                            <option selected>Select category</option>
+                            <option value="1">Status </option>
+                            <option value="2">Title</option>
+                            <option value="3">Type</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <input type="text" name="" id="search-text" class="form-control">
+
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <input type="submit" class="btn btn-sm btn-primary" value="Search">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- table -->
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Title</td>
+                            <td>Status</td>
+                            <td>Type</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% data.forEach(async(fundraiser)=>{%>
+                        <tr>
+                            <td><%=fundraiser.Fundraiser_Title.replace(/\w/, c => c.toUpperCase())%></td>
+                            <td><%=fundraiser.Fundraiser_Status.replace(/\w/, c => c.toUpperCase())%></td>
+                            <td><%=fundraiser.Fundraiser_Type.replace(/\w/, c => c.toUpperCase())%></td>
+                            <td>
+                                <a href="/fundraisers/page?id=<%=fundraiser.Fundraiser_ID%>"
+                                    class="btn btn-sm btn-success">View</a>
+                            </td>
+                        </tr>
+                        <%})%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

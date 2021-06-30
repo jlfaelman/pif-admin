@@ -1,0 +1,57 @@
+<div class="d-flex flex-row justify-content-start my-5">
+    <div class="card w-100 shadow-sm  mx-3">
+        <div class="card-body">
+            <div id="fundraiserChart" class="" style="height: 300px; width: 100%;"></div>
+        </div>
+    </div>
+
+    <div class="card w-100 shadow-sm mx-3">
+        <div class="card-body">
+            <div id="userChart" class="" style="height: 300px; width: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    window.onload = function () {
+        var fundraiser = new CanvasJS.Chart("fundraiserChart", {
+            title:{
+                text: "Fundraisers by Category"              
+            },
+            data: [              
+            {          
+                type: "column",
+                dataPoints: [
+                    { label: "Medical",  y: 10  },
+                    { label: "Burial", y: 15  },
+                    { label: "Calamities", y: 25  },
+                    { label: "Sports",  y: 30  },
+                    { label: "Education",  y: 28  },
+                    { label: "Animal Care",  y: 28  }
+                ]
+            }
+            ]
+        });
+        var user = new CanvasJS.Chart("userChart", {
+            title:{
+                text: "Fundraisers by Category"              
+            },
+            data: [              
+            {          
+                type: "column",
+                dataPoints: [
+                    { label: "Medical",  y: 10  },
+                    { label: "Burial", y: 15  },
+                    { label: "Calamities", y: 25  },
+                    { label: "Sports",  y: 30  },
+                    { label: "Education",  y: 28  },
+                    { label: "Animal Care",  y: 28  }
+                ]
+            }
+            ]
+        });
+        fundraiser.render();
+        user.render();
+    }
+</script>

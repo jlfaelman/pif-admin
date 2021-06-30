@@ -1,0 +1,249 @@
+<section class="py-5">
+    <div class="container">
+        <%if(success == undefined){%>
+
+
+        <%}else{%>
+        <section class="container " id='donate-success'>
+            <div class="card border-success mt-5">
+                <div class="card-body">
+                    <span class="text-success">
+                        Fundraising updated successfully!
+                    </span>
+                    <button type="button" class="btn-close float-end" onclick="dismiss();" aria-label="Close">
+                    </button>
+                </div>
+            </div>
+        </section>
+        <%}%>
+        <div class="back my-3">
+            <a class="btn" href='/fundraisers'>
+                &laquo; Back
+            </a>
+        </div>
+        <div class="card shadow-sm  mx-auto">
+            <div class="card-body">
+                <div class="">
+                    <span class="fs-4 my-2">
+                        Fundraising Information
+                    </span>
+                    <span class="float-end">
+                        <button class="btn btn-success" onclick="setStatus('<%=fundraiser.Fundraiser_ID%>');">
+        Update
+        </button>
+        </span>
+
+    </div>
+
+    <div class="row m-2">
+        <div class="my-2 col-sm-12 col-lg-3">
+            <div class="form-group">
+                <label for="page-title">
+                    Title
+                </label>
+                <input type="text" id="page-title" class="form-control"
+                    value="<%=fundraiser.Fundraiser_Title.replace(/\w/, c => c.toUpperCase())%>" disabled>
+            </div>
+        </div>
+        <div class="my-2 col-sm-12 col-lg-3">
+            <div class="form-group">
+                <label for="page-title">
+                    Type
+                </label>
+                <input type="text" id="page-type" class="form-control"
+                    value="<%=fundraiser.Fundraiser_Type.replace(/\w/, c => c.toUpperCase()) %>" disabled>
+            </div>
+        </div>
+        <div class="my-2 col-sm-12 col-lg-3">
+            <div class="form-group">
+                <label for="page-title">
+                    Type
+                </label>
+                <input type="text" id="page-date" class="form-control"
+                    value=" Created at: <%=moment(fundraiser.created_At).format('MMMM DD, YYYY')%>" disabled>
+            </div>
+        </div>
+        <div class="my-2 col-sm-12 col-lg-3">
+            <div class="form-group">
+                <label for="page-title">
+                    Set Status for Fundraiser
+                </label>
+                <select class="form-select" aria-label="page-status" id="page-status">
+                    <option value="<%=fundraiser.Fundraiser_Status%>">
+                        <%=fundraiser.Fundraiser_Status.replace(/\w/, c => c.toUpperCase()) %></option>
+                    <option value="on process">on Process</option>
+                    <option value="approved">Approved</option>
+                    <option value="deleted">Deleted</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-sm-12 col-lg-6">
+            <img src="<%=fundraiser.Fundraiser_Image%>" alt="" class="mt-4" height="430">
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <div class="form-group">
+                <label for="page-story"></label>
+                <textarea name="page-story" id="page-story" class="form-control" style="height: 430px;"
+                    disabled><%=fundraiser.Fundraiser_Desc%></textarea>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card body">
+                        <div class="fs-4 my-2 mx-3">
+                            Image for Validation
+                        </div>
+                        <div class="images">
+                            <div class="container">
+                                <div class="row">
+                                    <% validation.forEach((image)=>{%>
+                                    <div class="col-3 my-3">
+                                        <button type="button" class="card" data-bs-toggle="modal"
+                                            data-bs-target="#image-<%=image.Validation_ID%>">
+                                            <img src="<%=image.Validation_Image%>" height="200" width="250" class="">
+                                        </button>
+                                    </div>
+                                    <% })%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="my-5">
+    <div class="container">
+
+        <span class="fs-4 my-2">
+            Donation Information
+        </span>
+
+        <div class="row">
+            <% if(funding != undefined){%>
+
+            <div class="col">
+                <div class="card mx-2">
+                    <div class="card-body">
+                        <div class="">
+                            <span class="fs-4">
+                                Financial Donation
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group my-4">
+                                    <label for="">Funding Goal</label>
+                                    <input type="text" class="form-control"
+                                        value="<%=funding.Funding_Quota || `undefined`%>" disabled>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group my-4">
+                                    <label for="">Funding Date </label>
+                                    <input type="text" class="form-control" value="<%=funding.Funding_Date%>" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-row justify-content-evenly">
+                            <div class="form-check form-check-inline">
+                                <%if(gcash != undefined){%>
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" checked disabled>
+                                <%}else{%>
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" disabled>
+                                <%}%>
+                                
+                                <label class="form-check-label" for="inlineCheckbox1">
+                                    <img src="/gcash.png" alt="" class="img-fluid" width="100">
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <%if(paymaya != undefined){%>
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" checked disabled>
+                                <%}else{%>
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" disabled>
+                                <%}%>
+                                
+                                <label class="form-check-label" for="inlineCheckbox2">
+                                    <img src="/paymaya.png" alt="" class="img-fluid" width="100">
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <%if(funding.paypal_Disabled == false){%>
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" disabled>
+                                <%}else{%>
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" checked disabled>
+                                <%}%>
+                                
+                                <label class="form-check-label" for="inlineCheckbox2">
+                                    <img src="/paypal.png" alt="" class="img-fluid" width="100">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group my-4">
+                            <label for="">Funding Total</label>
+                            <input type="text" class="form-control" value="<%=funding.Funding_Total%>" disabled>
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="">Withdrawable </label>
+                                <input type="text" class="form-control" value="<%=funding.Funding_Received%>" disabled>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <% }else{ %>
+                <div class="col">
+                    <div class="card mx-2" style="height: 460px !important;">
+                        <div class="card-body">
+                            <div class="">
+                                <span class="fs-4">
+                                    Financial Donation
+                                </span>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                                <span class="mx-auto">
+                                    <section class="container-fluid">
+                                        <div class="my-5">
+                                            <div class="text-muted fs-4 w-50 mx-auto">
+                                                No Information to show
+                                            </div>
+                                        </div>
+                                    </section>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+               
+
+<% validation.forEach((image)=>{%>
+<!-- image modal -->
+<div class="modal fade" id="image-<%=image.Validation_ID%>" tabindex="-1" role="dialog" style="left: -10% !important;">
+    <div class="modal-dialog" role="document">
+
+        <img src="<%=image.Validation_Image%>" height="900" width="1150" class="">
+    </div>
+</div>
+<% })%>

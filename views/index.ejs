@@ -1,0 +1,38 @@
+<section class="my-5 py-5">
+    <div class="container">
+
+        <div id="login-err" class="container" hidden>
+            <div class="card w-50 mx-auto border-danger bg-danger">
+                <div class="card-body">
+                    <span class="text-light " id="login-txt"></span>
+                </div>
+            </div>
+        </div>
+        <form method="POST" onsubmit="login(); return false">
+
+            <div class="card mx-auto w-50 border-light shadow my-5">
+                <div class="card-body">
+                    <div class="image border-bottom py-3 d-flex justify-content-center">
+                        <img src="/pif.png" alt="" class="img-fluid mx-auto  " width="200">
+                    </div>
+                    <div class="fs-3 my-3 container-fluid">
+                         Admin
+                    </div>
+                    <div class="form-floating mt-4 w-75 mx-auto">
+                        <input type="text" class="form-control" placeholder="admin" id="admin-user" >
+                        <label for="admin-user" class="text-muted">Admin User</label>
+                    </div>
+                    <div class="form-floating mt-4 w-75 mx-auto">
+                        <input type="password" class="form-control" placeholder="admin" id="admin-password" >
+                        <label for="admin-password" class="text-muted">Admin Password</label>
+                    </div>
+                    <div class="login w-75 mx-auto my-4">
+                        <button class="btn btn-primary w-100">
+                            Log In
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
